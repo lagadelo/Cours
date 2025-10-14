@@ -1,17 +1,49 @@
 Class {
 	#name : 'Drone',
-	#superclass : 'Object',
+	#superclass : 'Component',
 	#instVars : [
-		'id',
 		'poids',
 		'position',
-		'idMeute',
+		'meute',
 		'comportement',
 		'nom'
 	],
 	#category : 'Cours - S2',
 	#package : 'Cours - S2'
 }
+
+{ #category : 'examples' }
+Drone class >> ex1 [
+
+|tmp|
+tmp := self new.
+tmp position:10@20.
+tmp poids: 5.
+tmp id: #toto.
+^tmp 
+]
+
+{ #category : 'examples' }
+Drone class >> ex2 [
+
+|tmp|
+tmp := self new.
+tmp position:20@20.
+tmp poids: 15.
+tmp id: #titi.
+^tmp 
+]
+
+{ #category : 'examples' }
+Drone class >> ex3 [
+
+|tmp|
+tmp := self new.
+tmp position:0@20.
+tmp poids: 10.
+tmp id: #tutu.
+^tmp 
+]
 
 { #category : 'accessing' }
 Drone >> comportement [
@@ -32,28 +64,26 @@ Drone >> execute [
  
 ]
 
-{ #category : 'accessing' }
-Drone >> id [
+{ #category : 'testing' }
+Drone >> isDrone [
+^true
+]
 
-	^ id
+{ #category : 'testing' }
+Drone >> isMeute [
+^false
 ]
 
 { #category : 'accessing' }
-Drone >> id: anObject [
+Drone >> meute [
 
-	id := anObject
+	^ meute
 ]
 
 { #category : 'accessing' }
-Drone >> idMeute [
+Drone >> meute: anObject [
 
-	^ idMeute
-]
-
-{ #category : 'accessing' }
-Drone >> idMeute: anObject [
-
-	idMeute := anObject
+	meute := anObject
 ]
 
 { #category : 'accessing' }

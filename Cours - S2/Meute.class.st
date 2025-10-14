@@ -1,10 +1,7 @@
 Class {
 	#name : 'Meute',
-	#superclass : 'Object',
+	#superclass : 'Component',
 	#instVars : [
-		'id',
-		'poids',
-		'position',
 		'drones',
 		'nom'
 	],
@@ -12,10 +9,22 @@ Class {
 	#package : 'Cours - S2'
 }
 
+{ #category : 'examples' }
+Meute class >> ex1 [ 
+|tmp|
+
+tmp:= self  new.
+tmp id: 23.
+tmp addDrone: Drone ex1.
+tmp addDrone: Drone ex2.
+^tmp.
+]
+
 { #category : 'adding removing' }
 Meute >> addDrone: aDrone [
 
-self drones add: aDrone id -> aDrone
+self drones add: aDrone id -> aDrone.
+aDrone meute: self id.
 ]
 
 { #category : 'accessing' }
@@ -30,23 +39,23 @@ Meute >> findDrone:anID [
 ^self drones at: anID
 ]
 
-{ #category : 'accessing' }
-Meute >> id [
-
-	^ id
-]
-
-{ #category : 'accessing' }
-Meute >> id: anObject [
-
-	id := anObject
-]
-
 { #category : 'initializing' }
 Meute >> initialize [ 
 
 drones := Dictionary new.
 
+]
+
+{ #category : 'testing' }
+Meute >> isDrone [ 
+
+^false
+]
+
+{ #category : 'testing' }
+Meute >> isMeute [
+
+	^ true
 ]
 
 { #category : 'accessing' }
@@ -64,25 +73,18 @@ Meute >> nom: anObject [
 { #category : 'accessing' }
 Meute >> poids [
 
-	^ poids
+	|p|
+	
+	p := 0.
+	
+	
+	self drones do:[:a| p := p +a poids].
+	^p
 ]
 
 { #category : 'accessing' }
-Meute >> poids: anObject [
-
-	poids := anObject
-]
-
-{ #category : 'accessing' }
-Meute >> position [
-
-	^ position
-]
-
-{ #category : 'accessing' }
-Meute >> position: anObject [
-
-	position := anObject
+Meute >> position [ 
+^self computePosition
 ]
 
 { #category : 'adding removing' }

@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'poids',
 		'position',
-		'meute',
 		'comportement',
 		'nom'
 	],
@@ -72,18 +71,6 @@ Drone >> isDrone [
 { #category : 'testing' }
 Drone >> isMeute [
 ^false
-]
-
-{ #category : 'accessing' }
-Drone >> meute [
-
-	^ meute
-]
-
-{ #category : 'accessing' }
-Drone >> meute: anObject [
-
-	meute := anObject
 ]
 
 { #category : 'accessing' }

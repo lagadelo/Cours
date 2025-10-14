@@ -2,7 +2,8 @@ Class {
 	#name : 'Component',
 	#superclass : 'Object',
 	#instVars : [
-		'id'
+		'id',
+		'meute'
 	],
 	#category : 'Cours - S2',
 	#package : 'Cours - S2'
@@ -18,6 +19,18 @@ Component >> id [
 Component >> id: anObject [
 
 	id := anObject
+]
+
+{ #category : 'accessing' }
+Component >> meute [
+
+	^ meute
+]
+
+{ #category : 'accessing' }
+Component >> meute: anObject [
+
+	meute := anObject
 ]
 
 { #category : 'accessing' }

@@ -20,7 +20,10 @@ Personne class >> example1 [
 Personne class >> nom: a prenom: b age: c [
 
 |tmp|
-tmp := self new nom:a;prenom:b;age:c.
+tmp := self new.
+tmp nom:a.
+tmp prenom:b.
+tmp age:c.
 ^tmp
 ]
 
@@ -32,6 +35,7 @@ Personne >> age [
 
 { #category : 'accessing' }
 Personne >> age: anObject [
+Transcript show:'Test';cr.
 
 	age := anObject
 ]
@@ -63,13 +67,19 @@ Personne >> prenom: anObject [
 { #category : 'printing' }
 Personne >> printOn: aStream [
 "un texte"
-aStream nextPutAll:'Je suis uen personne, et je m''apelle '.
+aStream nextPutAll:'Je suis une personne, et je m''apelle '.
 "des valeurs textuelles"
-aStream nextPutAll: self prenom; space;nextPutAll: self prenom;space.
+aStream nextPutAll: self prenom; space;nextPutAll: self nom;space.
 "une variable numérique. On lui délégue le fait de s'inscrire dans le stream"
 aStream nextPutAll: 'J''ai '. self age printOn: aStream.
 aStream nextPutAll:' ans';cr.
 
+]
+
+{ #category : 'age changing' }
+Personne >> rajeunitDe: annees [
+
+age := age - 2
 ]
 
 { #category : 'age changing' }

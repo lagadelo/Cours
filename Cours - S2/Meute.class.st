@@ -15,7 +15,7 @@ Class {
 { #category : 'adding removing' }
 Meute >> addDrone: aDrone [
 
-self drones add: aDrone
+self drones add: aDrone id -> aDrone
 ]
 
 { #category : 'accessing' }
@@ -27,7 +27,7 @@ Meute >> drones [
 { #category : 'retreiving' }
 Meute >> findDrone:anID [
 
-^self drones detect:[:aDrone| aDrone id = anID]
+^self drones at: anID
 ]
 
 { #category : 'accessing' }
@@ -45,7 +45,7 @@ Meute >> id: anObject [
 { #category : 'initializing' }
 Meute >> initialize [ 
 
-drones := OrderedCollection new.
+drones := Dictionary new.
 
 ]
 
@@ -88,5 +88,5 @@ Meute >> position: anObject [
 { #category : 'adding removing' }
 Meute >> removeDrone: aDrone [
 
-self drones remove: aDrone
+self drones removeKey: aDrone id
 ]

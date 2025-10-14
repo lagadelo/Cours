@@ -107,7 +107,7 @@ Meute >> poids [
 
 { #category : 'accessing' }
 Meute >> position [ 
-^self computePosition
+^self subclassResponsibility 
 ]
 
 { #category : 'adding removing' }

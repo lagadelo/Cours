@@ -73,6 +73,12 @@ Drone >> isMeute [
 ^false
 ]
 
+{ #category : 'moves' }
+Drone >> moveBy: aPoint [
+
+self position: self position + aPoint
+]
+
 { #category : 'accessing' }
 Drone >> nom [
 

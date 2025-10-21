@@ -6,18 +6,12 @@ Class {
 }
 
 { #category : 'testing' }
-TestDrone >> testCreationCluster [
-
-self should: [Cluster new] raise: Error
-]
-
-{ #category : 'testing' }
 TestDrone >> testMultipleCreationCluster [
 
 |nb|
 Cluster destroyInstance.
 nb  := Cluster allInstances size .
-	100 timesRepeat: [ Cluster uniqueInstance ].
+	100 timesRepeat: [ Cluster new ].
 	^ self assert: Cluster allInstances size = (nb + 1)
 
 	"Ou"
@@ -30,7 +24,7 @@ TestDrone >> testUnicityCreationCluster [
 	Cluster destroyInstance.
 
 
-	^ self assert: Cluster uniqueInstance == Cluster uniqueInstance
+	^ self assert: Cluster new == Cluster new
 
 	"Ou"
 	"^ self deny: (Cluster allInstances size > 1)"

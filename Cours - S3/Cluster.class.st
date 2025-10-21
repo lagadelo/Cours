@@ -15,12 +15,7 @@ Cluster class >> destroyInstance [
 ]
 
 { #category : 'instance creation' }
-Cluster class >> new [ 
-^self error:'Erreur de Singleton'
-]
-
-{ #category : 'instance creation' }
-Cluster class >> uniqueInstance [
+Cluster class >> new [
 
 	^ UniqueInstance
 		  ifNil: [ UniqueInstance := super new ]

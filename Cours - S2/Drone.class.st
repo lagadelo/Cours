@@ -41,6 +41,7 @@ tmp := self new.
 tmp position:0@20.
 tmp poids: 10.
 tmp id: #tutu.
+tmp comportement: [ :aValue| Transcript show: aValue printString; cr ].
 ^tmp 
 ]
 
@@ -59,6 +60,8 @@ Drone >> comportement: anObject [
 { #category : 'execute' }
 Drone >> execute [
 	"je sais executer mon comportement"
+	
+	self comportement value: self 
 
  
 ]

@@ -66,6 +66,21 @@ Drone >> execute [
  
 ]
 
+{ #category : 'malicious access' }
+Drone >> getIDWithoutJoining: composite [
+
+	| unNouvelID |
+	unNouvelID := composite newIDFor: self.
+	id := unNouvelID +1. "ma variable privee avec une mauvaise valeur"
+^self 
+]
+
+{ #category : 'accessing' }
+Drone >> id: aValue [
+
+^self error:'On ne supporte pas le changement une fois integre dans une meute'
+]
+
 { #category : 'testing' }
 Drone >> isDrone [
 ^true
@@ -74,6 +89,34 @@ Drone >> isDrone [
 { #category : 'testing' }
 Drone >> isMeute [
 ^false
+]
+
+{ #category : 'joining' }
+Drone >> join [
+
+^self join: Cluster new 
+
+ 
+
+
+]
+
+{ #category : 'joining' }
+Drone >> join: composite [
+
+	| unNouvelID |
+	unNouvelID := composite newIDFor: self. "Ici on ne supporte plus le newID sans se présenter pour etre menorise dans le dictionaire prospect"
+	id := unNouvelID. "ma variable privee"
+	composite addDrone: self
+]
+
+{ #category : 'malicious access' }
+Drone >> joinMalicious: composite [
+
+	| unNouvelID |
+	unNouvelID := composite newIDFor: self.
+	id := unNouvelID +1. "ma variable privee avec une mauvaise valeur"
+	composite addDrone: self
 ]
 
 { #category : 'moves' }

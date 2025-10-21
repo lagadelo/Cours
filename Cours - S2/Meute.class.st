@@ -3,7 +3,9 @@ Class {
 	#superclass : 'Component',
 	#instVars : [
 		'drones',
-		'nom'
+		'nom',
+		'i',
+		'prospects'
 	],
 	#category : 'Cours - S2',
 	#package : 'Cours - S2'
@@ -34,8 +36,17 @@ tmp addDrone: self ex1.
 { #category : 'adding removing' }
 Meute >> addDrone: aDrone [
 
-self drones add: aDrone id -> aDrone.
+id := self.
+
+((self findProspect: aDrone) = aDrone id ) ifFalse:[  Exception  signal: 'Spoofing'].
+self drones add: (self findProspect: aDrone) -> aDrone.
 aDrone meute: self id.
+]
+
+{ #category : 'adding removing' }
+Meute >> addProspect: anAssociation [
+
+prospects add: anAssociation 
 ]
 
 { #category : 'accessing' }
@@ -50,6 +61,12 @@ nP := (p / self poids).
 
 ]
 
+{ #category : 'testing' }
+Meute >> contains: element [
+
+^self drones values includes: element
+]
+
 { #category : 'accessing' }
 Meute >> drones [
 
@@ -62,11 +79,19 @@ Meute >> findDrone:anID [
 ^self drones at: anID
 ]
 
-{ #category : 'initializing' }
-Meute >> initialize [ 
+{ #category : 'adding removing' }
+Meute >> findProspect: aKey [
 
+"aKey =  drone"
+^prospects at: aKey ifAbsent:[self error: 'Unknown drone'] 
+]
+
+{ #category : 'adding removing' }
+Meute >> initialize [
+
+super initialize.
+prospects := Dictionary new.
 drones := Dictionary new.
-
 ]
 
 { #category : 'testing' }
@@ -79,6 +104,31 @@ Meute >> isDrone [
 Meute >> isMeute [
 
 	^ true
+]
+
+{ #category : 'retreiving' }
+Meute >> knows: aDrone [
+
+^drones values includes: aDrone
+]
+
+{ #category : 'adding removing' }
+Meute >> newID [
+" on interdir l'obtention d'ID sans être identifié"
+
+^self error:'Il faut etre identifie. Use newIDFor: instead'
+]
+
+{ #category : 'adding removing' }
+Meute >> newIDFor: aDrone [
+	" On recupere un ID unique"
+
+	id := 1.
+	[
+	(self drones keys includes: id) and: [ prospects keys includes: id ] ]
+		whileTrue: [ id := id + 1 ].
+	self addProspect: aDrone -> id.
+	^ id
 ]
 
 { #category : 'accessing' }
@@ -114,4 +164,10 @@ Meute >> position [
 Meute >> removeDrone: aDrone [
 
 self drones removeKey: aDrone id
+]
+
+{ #category : 'retreiving' }
+Meute >> size [
+
+^drones associations size
 ]

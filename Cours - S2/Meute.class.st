@@ -34,6 +34,18 @@ tmp addDrone: self ex1.
 ^tmp.
 ]
 
+{ #category : 'browser state' }
+Meute >> ChangeEtatEn: unEtat [
+
+etat := unEtat
+]
+
+{ #category : 'etat' }
+Meute >> aConfiance [
+
+self etat: (EtatDeConfiance model:self)
+]
+
 { #category : 'adding removing' }
 Meute >> addDrone: aDrone [
 
@@ -112,6 +124,12 @@ Meute >> isMeute [
 Meute >> knows: aDrone [
 
 ^drones values includes: aDrone
+]
+
+{ #category : 'etat' }
+Meute >> naPasConfiance [
+
+self etat: (Etat model:self)
 ]
 
 { #category : 'adding removing' }

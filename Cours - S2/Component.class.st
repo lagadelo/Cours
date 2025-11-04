@@ -9,6 +9,12 @@ Class {
 	#package : 'Cours - S2'
 }
 
+{ #category : 'memento' }
+Component >> createMemento [
+
+	^ Memento new setState: self
+]
+
 { #category : 'accessing' }
 Component >> id [
 

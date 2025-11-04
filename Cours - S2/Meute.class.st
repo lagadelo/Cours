@@ -4,8 +4,6 @@ Class {
 	#instVars : [
 		'drones',
 		'nom',
-		'i',
-		'prospects',
 		'etat'
 	],
 	#category : 'Cours - S2',
@@ -75,10 +73,35 @@ Meute >> contains: element [
 ^self drones values includes: element
 ]
 
+{ #category : 'copying' }
+Meute >> copy [
+
+	| tmp etatTemporaire |
+	tmp := self class new.
+	tmp drones: self drones copy.
+	tmp nom: self nom.
+	tmp id: self id.
+	
+	etatTemporaire := self etat.
+	self etat model: nil.
+	tmp etat: self etat copy.
+	
+	self etat: etatTemporaire.
+	tmp etat model: tmp.
+	^tmp 
+	
+]
+
 { #category : 'accessing' }
 Meute >> drones [
 
 	^ drones
+]
+
+{ #category : 'drones selection' }
+Meute >> dronesWithin: aRectangle [
+
+	^ self drones select: [ :a | aRectangle containsPoint: a position ]
 ]
 
 { #category : 'accessing' }
@@ -186,6 +209,14 @@ Meute >> position [
 Meute >> removeDrone: aDrone [
 
 self drones removeKey: aDrone id
+]
+
+{ #category : 'memento' }
+Meute >> setMemento: unMemento [
+
+	self id: unMemento id.
+	drones := unMemento drones.
+	self nom: unMemento nom
 ]
 
 { #category : 'retreiving' }

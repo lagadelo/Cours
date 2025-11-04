@@ -57,6 +57,21 @@ Drone >> comportement: anObject [
 	comportement := anObject
 ]
 
+{ #category : 'copying' }
+Drone >> copy [ 
+| tmp |
+tmp := self class new.
+tmp nom: self nom.
+tmp poids: self poids.
+tmp comportement: self comportement copy.
+tmp id: self id.
+"On ne copie pas la meute"
+
+
+
+
+]
+
 { #category : 'execute' }
 Drone >> execute [
 	"je sais executer mon comportement"
@@ -159,4 +174,29 @@ Drone >> position [
 Drone >> position: anObject [
 
 	position := anObject
+]
+
+{ #category : 'memento' }
+Drone >> setMemento: unMemento [
+
+"state := unMemento getState"
+
+self position: unMemento position.
+self id: unMemento id.
+self comportement: unMemento comportement.
+self nom: unMemento nom.
+self poids: unMemento poids 
+
+
+
+
+]
+
+{ #category : 'as yet unclassified' }
+Drone >> voisinsAUneDistanceDe: d [
+
+	^ (self meute
+		  dronesWithin:
+		  (Rectangle origin: self position - d corner: position + d))
+		  reject: [ :a | a == self ]
 ]

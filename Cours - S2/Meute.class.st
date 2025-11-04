@@ -5,7 +5,8 @@ Class {
 		'drones',
 		'nom',
 		'i',
-		'prospects'
+		'prospects',
+		'etat'
 	],
 	#category : 'Cours - S2',
 	#package : 'Cours - S2'
@@ -36,17 +37,12 @@ tmp addDrone: self ex1.
 { #category : 'adding removing' }
 Meute >> addDrone: aDrone [
 
-id := self.
+"id := self.
 
 ((self findProspect: aDrone) = aDrone id ) ifFalse:[  Exception  signal: 'Spoofing'].
 self drones add: (self findProspect: aDrone) -> aDrone.
-aDrone meute: self id.
-]
-
-{ #category : 'adding removing' }
-Meute >> addProspect: anAssociation [
-
-prospects add: anAssociation 
+aDrone meute: self id."
+^self etat addDrone:aDrone 
 ]
 
 { #category : 'accessing' }
@@ -73,6 +69,18 @@ Meute >> drones [
 	^ drones
 ]
 
+{ #category : 'accessing' }
+Meute >> etat [
+
+	^ etat
+]
+
+{ #category : 'accessing' }
+Meute >> etat: anObject [
+
+	etat := anObject
+]
+
 { #category : 'retreiving' }
 Meute >> findDrone:anID [
 
@@ -80,17 +88,11 @@ Meute >> findDrone:anID [
 ]
 
 { #category : 'adding removing' }
-Meute >> findProspect: aKey [
-
-"aKey =  drone"
-^prospects at: aKey ifAbsent:[self error: 'Unknown drone'] 
-]
-
-{ #category : 'adding removing' }
 Meute >> initialize [
 
 super initialize.
-prospects := Dictionary new.
+"prospects := Dictionary new." "Cela est maintenant de la responsabilité de l'etat"
+self etat: (Etat model: self). "On initialize l'etat qui connait le modèle"
 drones := Dictionary new.
 ]
 
@@ -123,12 +125,14 @@ Meute >> newID [
 Meute >> newIDFor: aDrone [
 	" On recupere un ID unique"
 
-	id := 1.
+"	id := 1.
 	[
 	(self drones keys includes: id) and: [ prospects keys includes: id ] ]
 		whileTrue: [ id := id + 1 ].
 	self addProspect: aDrone -> id.
-	^ id
+	^ id"
+	
+self etat newIDFor:aDrone
 ]
 
 { #category : 'accessing' }

@@ -1,6 +1,6 @@
 Class {
 	#name : 'Component',
-	#superclass : 'Object',
+	#superclass : 'AbstractSubject',
 	#instVars : [
 		'id',
 		'meute'

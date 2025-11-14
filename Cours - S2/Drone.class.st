@@ -180,7 +180,8 @@ Drone >> position [
 { #category : 'accessing' }
 Drone >> position: anObject [
 
-	position := anObject
+	position := anObject.
+	self hasChanged:#position
 ]
 
 { #category : 'memento' }

@@ -21,3 +21,9 @@ Cluster class >> new [
 		  ifNil: [ UniqueInstance := super new ]
 		  ifNotNil: [ UniqueInstance ]
 ]
+
+{ #category : 'visiting' }
+Cluster >> accept: unVisiteur [
+
+	unVisiteur visitCluster: self
+]

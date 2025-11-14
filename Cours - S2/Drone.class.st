@@ -45,6 +45,12 @@ tmp comportement: [ :aValue| Transcript show: aValue printString; cr ].
 ^tmp 
 ]
 
+{ #category : 'visiting' }
+Drone >> accept: unVisiteur [
+
+	unVisiteur visitDrone: self
+]
+
 { #category : 'accessing' }
 Drone >> comportement [
 
@@ -92,8 +98,9 @@ Drone >> getIDWithoutJoining: composite [
 
 { #category : 'accessing' }
 Drone >> id: aValue [
-
-^self error:'On ne supporte pas le changement une fois integre dans une meute'
+"
+^self error:'On ne supporte pas le changement une fois integre dans une meute'"
+id := aValue 
 ]
 
 { #category : 'testing' }

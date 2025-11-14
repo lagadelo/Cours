@@ -9,6 +9,12 @@ Class {
 	#package : 'Cours - S2'
 }
 
+{ #category : 'visiting' }
+Component >> accept: unVisiteur [
+
+	^ self subclassResponsibility
+]
+
 { #category : 'memento' }
 Component >> createMemento [
 

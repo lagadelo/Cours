@@ -44,15 +44,19 @@ Meute >> aConfiance [
 self etat: (EtatDeConfiance model:self)
 ]
 
+{ #category : 'visiting' }
+Meute >> accept: unVisiteur [
+
+	unVisiteur visitMeute: self
+]
+
 { #category : 'adding removing' }
 Meute >> addDrone: aDrone [
 
-"id := self.
-
-((self findProspect: aDrone) = aDrone id ) ifFalse:[  Exception  signal: 'Spoofing'].
-self drones add: (self findProspect: aDrone) -> aDrone.
-aDrone meute: self id."
-^self etat addDrone:aDrone 
+ 
+self drones add:  aDrone id -> aDrone.
+aDrone meute: self  
+ 
 ]
 
 { #category : 'accessing' }

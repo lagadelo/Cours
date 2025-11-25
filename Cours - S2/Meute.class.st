@@ -55,7 +55,8 @@ Meute >> addDrone: aDrone [
 
  
 self drones add:  aDrone id -> aDrone.
-aDrone meute: self  
+aDrone meute: self.
+self hasChanged: aDrone.
  
 ]
 

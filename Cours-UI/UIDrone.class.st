@@ -23,12 +23,6 @@ UIDrone >> carte [
 ]
 
 { #category : 'accessing' }
-UIDrone >> carte1: anObject [
-
-	carte := anObject
-]
-
-{ #category : 'accessing' }
 UIDrone >> carte: anObject [
 
 	carte := anObject.
@@ -40,8 +34,8 @@ UIDrone >> configureCanvas [
 
 	self rsCanvas
 		when: RSMouseClick
-		do: [ :evt | self model addDrone: (Drone exemple: 'test' at:  self carte extent / 2 + evt position)   ]
-		for: self
+		do: [ :evt |  self model addDrone: (Drone exemple: 'test', (Random new next*100000) rounded printString at:    evt position  ) ]
+		for: self rsCanvas camera
 ]
 
 { #category : 'layout' }
@@ -118,6 +112,13 @@ UIDrone >> model [
 UIDrone >> model: anObject [
 
 	model := anObject
+]
+
+{ #category : 'opeing' }
+UIDrone >> open [
+
+	super open.
+	self updateMonModele
 ]
 
 { #category : 'accessing' }

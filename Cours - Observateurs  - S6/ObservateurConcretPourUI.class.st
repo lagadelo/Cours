@@ -40,8 +40,9 @@ ObservateurConcretPourUI >> interfaceGraphique: anObject [
 ]
 
 { #category : 'as yet unclassified' }
-ObservateurConcretPourUI >> subject: unSujet update: unSympbol [
+ObservateurConcretPourUI >> subject: unSujet update: unObjet [
 
 	"update est une version sommaire, on ne cherche pas a connaite le champ qui a changé"
-	self interfaceGraphique updateMonModele 
+	"self interfaceGraphique updateMonModele "
+	self interfaceGraphique updateMonModele:unObjet 
 ]

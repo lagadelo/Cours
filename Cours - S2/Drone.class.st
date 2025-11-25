@@ -45,6 +45,17 @@ tmp comportement: [ :aValue| Transcript show: aValue printString; cr ].
 ^tmp 
 ]
 
+{ #category : 'examples' }
+Drone class >> exemple: id at: position [
+
+|tmp|
+tmp := self new.
+tmp position:position.
+tmp poids: 15.
+tmp id: #id.
+^tmp 
+]
+
 { #category : 'visiting' }
 Drone >> accept: unVisiteur [
 
